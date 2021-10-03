@@ -29,8 +29,9 @@
   */
 
 /*
- * Basic tree that stores a value.
+ * Basic tree that stores a value. Trees
  */
+
 
 var Tree = function(value) {
   this.value = value;
