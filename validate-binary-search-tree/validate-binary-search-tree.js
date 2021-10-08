@@ -10,23 +10,14 @@
  * @param {TreeNode} root
  * @return {boolean}
  */
-// var isValidBST = function(root) {
-//     if (!root) return true
-//     if (root.left && root.right) {
-//        if (root.left.val>=root.val || root.right.val<=root.val) return false
-//     } 
-//     if (root.left && !root.right) {
-//         if (root.left.val>=root.val) return false
-//     }
-//     if (!root.left && root.right) {
-//         if (root.right.val<=root.val) return false
-//     } else {
-//         return true
-//     }
-//     return isValidBST(root.left) && isValidBST(root.right) 
-       
-    
-// };
+var isValidBST = function(root) {
+    function inner (root, min, max) {
+        if (root === null) return true
+        if (root.val <= min || root.val>= max) return false
+        return inner(root.left,min, root.val) && inner(root.right, root.val, max)
+    }
+    inner(root, -Infinity, Infinity)
+};
 
 var isValidBST = function(root) {
     
