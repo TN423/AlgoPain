@@ -12,17 +12,16 @@
  */
 
 
-var maxDepth = function(root) {
-    var leftMax =0
-    var rightMax=0
-    if (root===null) return 0
-    // if (root.left === null) return 0
-    // if (root.right === null) return 0
-    leftMax += maxDepth(root.left)
-    rightMax += maxDepth(root.right)
-    var max = Math.max(leftMax+1,rightMax+1)
-    return max
-};
+
+var maxDepth = function (root) {
+    if (root === null) return 0
+    var left = maxDepth(root.left)
+    var right = maxDepth (root.right)
+    return Math.max(left, right) +1
+}
+
+// O(n) runtime
+
 
 
 // [3,9,20]
