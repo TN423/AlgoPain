@@ -3,7 +3,7 @@
  * @return {number}
  */
 var findMaxConsecutiveOnes = function(nums) {
-  if (nums.length ===1 && nums[0]===1) return 1
+  // if (nums.length ===1 && nums[0]===1) return 1
   
   var currMax = 0
   var absMax =0
