@@ -38,3 +38,8 @@ function radixSort (nums) {
 
 
 console.log(getDigit(54321,2)) //return 4  for 4000
+
+//n*k time
+//n = length of array
+//k = number of digits - even 1trillion is just 13 digits - so this is much better than n2
+//given how much faster n grows relative to k, this is essentially O (n) time
