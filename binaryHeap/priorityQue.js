@@ -3,22 +3,35 @@ class MaxBinaryHeap {
     this.values = []
   }
 
-  insert (element) {
-    this.values.push(element)
+  enqueue (val, priority) {
+    var node = new Node (val, priority)
+    this.values.push(node)
     this.bubbleUp()
   }
+
+
   bubbleUp() {
+    //start index at very last node in array
     var index = this.values.length -1
     var element = this.values[index]
-    while (index >0) {
-      var parentIndex = Math.floor((index -1)/2)
+    //while index greater than zero, have it bubble up from the bottom of the array
+    while (index>0) {
+      var parentIndex = Math.min ((index-1)/2)
       var parent = this.values[parentIndex]
-      if (element <= parent) break
-      this.values[parrentIndex]=element
+      if (element>paraent) break
+      this.values[parentIndex]=element
       this.values[index]=parent
-      index = parentIndex
+      index=parentIndex
     }
+      //identify a given nodes parent
+      //ifcurrent element priority is a higher number than the parent priority (i.e lower priority) then stop the while loop
+      //otherwise swap the parent element and current element, at their respective indexes
+      //update the current index to be the parent's index
+
+
   }
+
+
 
   extractMax () {
     var max = this.values[0];
@@ -61,4 +74,11 @@ class MaxBinaryHeap {
     }
   }
 
+}
+
+class Node {
+  constructor(val, priority) {
+    this.val = val;
+    this.priority = prioity;
+  }
 }
