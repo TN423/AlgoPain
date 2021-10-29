@@ -3,57 +3,69 @@
  * @param {string[]} words
  * @return {string[]}
  */
-var findWords = function(board, words) {
-    let startingPoints = {
-        a: [], b: [], c: [], d: [], e: [],
-        f: [], g: [], h: [], i: [], j: [],
-        k: [], l: [], m: [], n: [], o: [],
-        p: [], q: [], r: [], s: [], t: [], 
-        u: [], v: [], w: [], x: [], y: [],
-        z: []
-    }
-    
-    
-    for (let row = 0; row < board.length; row++) {
-        for (let col = 0; col < board[0].length; col++) {
-            let character = board[row][col]
-            
-            startingPoints[character].push([row, col])
+var findWords = function(board,wordz){
+    var result = []
+    var root = buildTrie3(wordz)
+
+    //iterate through all letters in board, pefroming a dfs to see if we get a matching word from the trie
+    for (var i=0; i<board.length;i++) {
+        for (var j=0; j<board[0].length;j++){
+            dfs(root,i,j)
         }
     }
-    
-    return words.filter((word) => {
-        let startingCharacter = word[0]
-        
-        if (startingPoints[startingCharacter].length === 0) return false
-        
-        for (let i = 0; i < startingPoints[startingCharacter].length; i++) {
-            let [row, col] = startingPoints[startingCharacter][i]
-            
-            if (depthFirstSearch(board, word, 0, row, col)) return true
+      
+    //build a trie out of words array
+    function buildTrie3 (words){
+        var root={}
+        for (var word of words){
+            //Reset back to the top of the root for each new word
+            var node = root
+            for (var letter of word){
+                if (!node[letter]){
+                   node[letter]={} 
+                }
+                node = node[letter]
+            }
+            node.wordEnd = word
         }
+        return root
+    }
+
+    //dfs
+    function dfs(root,i,j){
         
-        return false
-    })
+        //base case true
+        if (root.wordEnd){
+            result.push(root.wordEnd)
+            console.log(result)
+            root.wordEnd = undefined
+        }
+
+        //base case false
+        if( i<0 || i >=board.length || j<0 || j>= board[0].length ||root[board[i][j]]===undefined ) {
+            return
+        }
+ 
+        //temp variable
+        var temp = board[i][j]
+        board[i][j]=''
+        //explore
+        dfs(root[temp],i+1,j)
+        dfs(root[temp],i-1,j)
+        dfs(root[temp],i,j+1)
+        dfs(root[temp],i,j-1)
+        
+        //toggle space back
+        board[i][j]=temp
+    }
+
+    return result
 }
 
-var depthFirstSearch = function(board, word, index, row, col) {
-    if (row < 0 || row >= board.length || col < 0 || col >= board[0].length) return false
-    if (board[row][col] === '#' || board[row][col] !== word[index]) return false
-    
-    if (index === word.length - 1) return true
-    
-    let temp = board[row][col]
-    board[row][col] = '#'
-    
-    let answer =  (
-        depthFirstSearch(board, word, index + 1, row - 1, col) ||
-        depthFirstSearch(board, word, index + 1, row, col + 1) ||
-        depthFirstSearch(board, word, index + 1, row + 1, col) ||
-        depthFirstSearch(board, word, index + 1, row, col - 1)
-    )
-    
-    board[row][col] = temp
-    
-    return answer
-}
+
+
+
+ var board = [["o","a","a","n"],["e","t","a","e"],["i","h","k","r"],["i","f","l","v"]]
+ var words = ["oath","oats","pea","pear","eat","rain"]
+
+findWords(board,words)
