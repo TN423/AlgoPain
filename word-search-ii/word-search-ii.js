@@ -4,53 +4,56 @@
  * @return {string[]}
  */
 var findWords = function(board, words) {
-   //O(M(4⋅3^(L−1)) where M is the number of cells and L is the length of the longest word
-
-    let result = []
-    let root = buildTrie(words)
-
-    for (let i = 0; i < board.length; i++) {
-        for (let j = 0; j < board[i].length; j++) {
-            search(root, i, j)
+    let startingPoints = {
+        a: [], b: [], c: [], d: [], e: [],
+        f: [], g: [], h: [], i: [], j: [],
+        k: [], l: [], m: [], n: [], o: [],
+        p: [], q: [], r: [], s: [], t: [], 
+        u: [], v: [], w: [], x: [], y: [],
+        z: []
+    }
+    
+    
+    for (let row = 0; row < board.length; row++) {
+        for (let col = 0; col < board[0].length; col++) {
+            let character = board[row][col]
+            
+            startingPoints[character].push([row, col])
         }
     }
+    
+    return words.filter((word) => {
+        let startingCharacter = word[0]
+        
+        if (startingPoints[startingCharacter].length === 0) return false
+        
+        for (let i = 0; i < startingPoints[startingCharacter].length; i++) {
+            let [row, col] = startingPoints[startingCharacter][i]
+            
+            if (depthFirstSearch(board, word, 0, row, col)) return true
+        }
+        
+        return false
+    })
+}
 
-    function buildTrie(words) {
-        let root = {}
+var depthFirstSearch = function(board, word, index, row, col) {
+    if (row < 0 || row >= board.length || col < 0 || col >= board[0].length) return false
+    if (board[row][col] === '#' || board[row][col] !== word[index]) return false
     
-        for (let word of words) {
-            //Reset back to the top of the root for each new word
-            let node = root
-            for (let char of word) {
-                 if (!node[char]) {
-                    node[char] = {}
-                }
-                node = node[char]
-            }
-            node.wordEnd = word
-        }
-        return root
-    }
-
-    function search(root, i, j) {
-        if (root.wordEnd != null) {
-            result.push(root.wordEnd)
-            root.wordEnd = null
-        }
-     
-        if (i < 0 || i >= board.length || j < 0 || j >= board[0].length || root[board[i][j]] == null) {
-            return
-        }
+    if (index === word.length - 1) return true
     
-        let temp = board[i][j]
-        board[i][j] = '#'
+    let temp = board[row][col]
+    board[row][col] = '#'
     
-        search(root[temp], i + 1, j)
-        search(root[temp], i - 1, j)
-        search(root[temp], i, j + 1)
-        search(root[temp], i, j - 1)
+    let answer =  (
+        depthFirstSearch(board, word, index + 1, row - 1, col) ||
+        depthFirstSearch(board, word, index + 1, row, col + 1) ||
+        depthFirstSearch(board, word, index + 1, row + 1, col) ||
+        depthFirstSearch(board, word, index + 1, row, col - 1)
+    )
     
-        board[i][j] = temp
-    }
-    return result
+    board[row][col] = temp
+    
+    return answer
 }
