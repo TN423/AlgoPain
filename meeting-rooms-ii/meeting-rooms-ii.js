@@ -3,25 +3,27 @@
  * @return {number}
  */
 var minMeetingRooms = function(intervals) {
-    let rooms = []
-    // sort by start time
-    intervals.sort((a, b) => a[0] - b[0])
-    for (let e of intervals) {
-        let hasRoom = false
-        // go through rooms to see if there is any available
-        for (let r of rooms) {
-            if (r[r.length - 1] <= e[0]) {
-                // if available, add meeting end time to this room
-                r.push(e[1])
+    intervals.sort((a,b)=>{return a[0]-b[0]})
+    
+    var rooms = []
+    
+    for (var j=0; j<intervals.length;j++) {
+        var hasRoom = false
+        for (var i=0;i<rooms.length;i++) {
+            //check if any available rooms
+            if(rooms[i][rooms[i].length-1]<=intervals[j][0]) {
+                //if available add the end time to the room
+                rooms[i].push(intervals[j][1])
                 hasRoom = true
                 break
             }
         }
-        // if none available, open a new room
-        if (!hasRoom) {
+        if(!hasRoom) {
             rooms.push([])
-            rooms[rooms.length - 1].push(e[1])
+            rooms[rooms.length-1].push(intervals[j][1])
         }
     }
+    console.log(rooms)
     return rooms.length
 };
+console.log(minMeetingRooms([[2,7]]))
