@@ -21,6 +21,41 @@
 //input is the choic R,P, or S for 3 times
 
 
+var rockPaperPermutation3 = function (roundcount) {
+  var result = []
+  function plays (curTotal) {
+    if (curTotal.length === roundcount){
+      result.push(curTotal)
+      return
+    }
+
+    var choices = ['r','p','s']
+    for (var i =0; i<choices.length;i++){
+      plays(curTotal+=choices[i])
+    }
+  }
+  plays('')
+  return result
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 var rockPaperPermutation2 = function (roundcount) {
 
   var results = []
