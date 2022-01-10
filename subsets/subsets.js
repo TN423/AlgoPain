@@ -9,15 +9,15 @@ var subsets = function(nums) {
           result.push(slate.slice())
           return
       }
-      //exclude
+      //excludes
       dfs(i+1, nums, slate)
-      
-      //include
+
+      //includes
       slate.push(nums[i])
       dfs(i+1, nums, slate)
       slate.pop()
   }
   dfs(0, nums, [])
-  console.log(result)  
-  return result  
+  console.log(result)
+  return result
 };
