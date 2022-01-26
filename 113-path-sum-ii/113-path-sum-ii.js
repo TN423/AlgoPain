@@ -22,17 +22,20 @@ var pathSum = function(root, targetSum) {
               result.push(slate.slice())
               slate.pop()
           }
-          
           return
       }
-      slate.push(node.val)
-      console.log(slate)
-      if (node.left) dfs (node.left, sum - node.val, slate)
-      slate.pop()
       
-      slate.push(node.val)
-      if (node.right) dfs (node.right, sum - node.val, slate)
-      slate.pop()
+      if (node.left) {
+          slate.push(node.val)
+          dfs (node.left, sum - node.val, slate)
+          slate.pop()
+      } 
+      
+      if (node.right) {
+        slate.push(node.val) 
+        dfs (node.right, sum - node.val, slate)
+        slate.pop()
+      } 
   }
   dfs(root, targetSum, [])
   return result  
