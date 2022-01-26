@@ -16,11 +16,13 @@ var pathSum = function(root, targetSum) {
   var result = []
   var dfs = function (node, sum, slate) {
       if (node.left === null && node.right === null) {
-          slate.push(node.val)
+          
           if (node.val === sum) {
+              slate.push(node.val)
               result.push(slate.slice())
+              slate.pop()
           }
-          slate.pop()
+          
           return
       }
       slate.push(node.val)
