@@ -11,6 +11,8 @@
  * @param {number} val
  * @return {TreeNode}
  */
+
+//keep a prev and current then use a while loop to cycle through the tree going left or right
 var insertIntoBST = function(root, val) {
     var node = new TreeNode(val)
     if (!root) return node
