@@ -10,6 +10,9 @@
  * @param {ListNode} head
  * @return {ListNode}
  */
+
+//once fast = slow, then both slow and start are equidistant from the cycle node
+
 var detectCycle = function(head) {
   if (!head) return null
   if (!head.next) return null  
