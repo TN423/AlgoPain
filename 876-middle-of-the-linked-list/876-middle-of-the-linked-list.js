@@ -10,14 +10,11 @@
  * @return {ListNode}
  */
 var middleNode = function(head) {
-    var front = head
-    var array = []
-    while (head) {
-        array.push(head)
-        head = head.next
+    var fast = head
+    var slow = head
+    while (fast && fast.next) {
+        fast = fast.next.next
+        slow = slow.next
     }
-    var mid = Math.ceil((array.length-1)/2)
-    
-
-    return array[mid]
+    return slow
 };
