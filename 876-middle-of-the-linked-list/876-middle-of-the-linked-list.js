@@ -13,14 +13,11 @@ var middleNode = function(head) {
     var front = head
     var array = []
     while (head) {
-        array.push(head.val)
+        array.push(head)
         head = head.next
     }
     var mid = Math.ceil((array.length-1)/2)
-    while (mid) {
-        front = front.next
-        mid--
-    }
+    
 
-    return front
+    return array[mid]
 };
