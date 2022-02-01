@@ -13,19 +13,40 @@
 var reverseList = function(head) {
     var prev = null;
     var cur = head;
-    var next = null
-    while (cur !== null) {
-        next = cur.next
+    
+    while (cur) {
+        var next = cur.next
         cur.next = prev
         prev = cur
         cur = next
         
     }
-    
     return prev
-    
-    
-}    
+}
+
+
+
+
+
+
+
+
+
+
+
+
+// var reverseList = function(head) {
+//     var prev = null;
+//     var cur = head;
+//     var next = null
+//     while (cur !== null) {
+//         next = cur.next
+//         cur.next = prev
+//         prev = cur
+//         cur = next      
+//     } 
+//     return prev   
+// }    
 
 
 
