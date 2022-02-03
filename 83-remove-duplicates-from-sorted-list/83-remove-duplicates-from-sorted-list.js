@@ -18,10 +18,12 @@ var deleteDuplicates = function(head) {
             while (cur && cur.val === prev.val){
                 cur=cur.next
             }
+            prev.next = cur
+        } else {
+            prev = cur
+            cur = cur.next
         }
-        prev.next = cur
-        prev = prev.next
-        if (cur) cur =cur.next
+
     }
     return dummy.next
 };
