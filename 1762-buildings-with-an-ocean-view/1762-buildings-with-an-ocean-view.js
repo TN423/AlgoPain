@@ -2,6 +2,8 @@
  * @param {number[]} heights
  * @return {number[]}
  */
+
+//start from the right side
 var findBuildings = function(heights) {
     var result = []
     result.unshift(heights.length-1)
