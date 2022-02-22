@@ -19,12 +19,8 @@ var transpose = function (matrix) {
 
 
 var flip = function (matrix) {
-    for (var r=0; r<matrix.length;r++) {
-        for (var c=0; c<Math.floor(matrix[0].length/2);c++) {
-            var temp = matrix[r][c]
-            matrix[r][c]=matrix[r][matrix[0].length-1-c]
-            matrix[r][matrix[0].length-1-c]=temp
-        }
+    for (var row of matrix) {
+        row.reverse()
     }
 }
 
