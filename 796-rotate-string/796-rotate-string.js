@@ -4,6 +4,8 @@
  * @return {boolean}
  */
 
+
+//add s to itself, then see if the updated string includes the goal
 var rotateString = function(s, goal) {
     if (s.length !== goal.length) return false
     if (s.length === 0 && goal.length === 0) return true
