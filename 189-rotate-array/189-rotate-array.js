@@ -9,10 +9,10 @@
 var reverse = function (nums, start, end) {
 
     while (start < end) {
-        var temp = nums[start]
-        nums[start]=nums[end]
-        nums[end]=temp
-        // [nums[start], nums[end] = nums[end], nums[start]];
+        // var temp = nums[start]
+        // nums[start]=nums[end]
+        // nums[end]=temp
+        [nums[start], nums[end]] = [nums[end], nums[start]]
         start++
         end--
     }
