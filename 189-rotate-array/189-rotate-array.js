@@ -12,9 +12,9 @@ var reverse = function (nums, start, end) {
         // var temp = nums[start]
         // nums[start]=nums[end]
         // nums[end]=temp
-        [nums[start], nums[end]] = [nums[end], nums[start]]
-        start++
-        end--
+        [nums[start], nums[end]] = [nums[end], nums[start]];
+        start++;
+        end--;
     }
 }
 
