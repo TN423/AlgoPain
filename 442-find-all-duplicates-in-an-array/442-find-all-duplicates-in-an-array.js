@@ -8,7 +8,7 @@
 //you can make use of the indices like a link list, value 4 points to index 4, value of 1 points to index 1, etc
 //if you come back to the same index more than once, its a duplicate
 
-
+//constant space
 var findDuplicates = function(nums) {
     var result = [];
     for (var i =0; i <nums.length;i++) {
@@ -20,21 +20,8 @@ var findDuplicates = function(nums) {
             nums[index]=-nums[index]
         }
     }
-    return result
-    
-    
-    
+    return result    
 }
-
-
-
-
-
-
-
-
-
-
 
 
 //uses hash table
