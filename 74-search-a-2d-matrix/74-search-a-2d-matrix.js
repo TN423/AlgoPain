@@ -12,6 +12,7 @@ var searchMatrix = function(matrix, target) {
     var right = row * col -1;
     while (left <= right) {
         var mid = Math.floor((left+right)/2);
+        console.log(mid)
         var midVal = matrix[Math.floor(mid/col)][mid % col]
         if (midVal===target) return true
         if (target < midVal) {
