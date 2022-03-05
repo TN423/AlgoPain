@@ -2,18 +2,32 @@
  * @param {string[]} strs
  * @return {string[][]}
  */
+
 var groupAnagrams = function(strs) {
-  var hash ={}
-  for (var word of strs) {
-      var sorted = word.split('').sort().join('')
-      if (!hash[sorted]) {
-          hash[sorted]=[word]
-      } else {
-          hash[sorted].push(word)
-      }
-  } 
-  return Object.values(hash)  
+    var hash = {}
+    for (var word of strs) {
+        var sorted = word.split('').sort().join('')
+        if (!hash[sorted]) {
+            hash[sorted]=[word]
+        } else {
+            hash[sorted].push(word)
+        }
+    }
+    return Object.values(hash)
 }
+
+// var groupAnagrams = function(strs) {
+//   var hash ={}
+//   for (var word of strs) {
+//       var sorted = word.split('').sort().join('')
+//       if (!hash[sorted]) {
+//           hash[sorted]=[word]
+//       } else {
+//           hash[sorted].push(word)
+//       }
+//   } 
+//   return Object.values(hash)  
+// }
 
 
 // var groupAnagrams = function(strs) {
