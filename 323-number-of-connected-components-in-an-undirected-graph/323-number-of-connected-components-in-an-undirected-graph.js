@@ -23,7 +23,7 @@ var dfs = function (node, adjList, visited) {
     visited[node]=true
     for (var neighbor of adjList[node]) {
         if (!visited[neighbor]) {
-            visited[neighbor]=true
+            // visited[neighbor]=true
             dfs(neighbor, adjList, visited)
         }
     }
