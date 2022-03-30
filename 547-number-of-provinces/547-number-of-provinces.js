@@ -31,7 +31,7 @@ const getEdges = function (idx, edge) {
 
 //... takes all the results from the returned getEdges array and pushes them into the relevant index in the adjacency list
 const buildAdjList = function (edges) {
-    var adjList = Array.from({length: edges.length},()=>[])
+    var adjList = new Array(edges.length).fill().map(()=>[])
     for (var i =0; i <edges.length;i++) {
         adjList[i].push(...getEdges(i, edges[i]))
     }
