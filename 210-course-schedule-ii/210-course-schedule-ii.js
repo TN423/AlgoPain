@@ -18,11 +18,12 @@ var dFs = function (node, adjList, visiting, visited, result) {
     if (visiting[node]) return false
     if (visited[node]) return true
     visiting[node]=true
+    visited[node]=true
     for (var neighbor of adjList[node]) {
         if (!dFs(neighbor, adjList, visiting, visited, result)) return false
     }
     visiting[node]=false
-    visited[node]=true
+    
     result.push(node)
     return true
 }
