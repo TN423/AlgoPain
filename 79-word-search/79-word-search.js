@@ -3,6 +3,7 @@
  * @param {string} word
  * @return {boolean}
  */
+
 var dfs = function (board,i,j,count,word){
       //stop case: if count matches length, we've found a word
       if(count === word.length){
@@ -17,15 +18,21 @@ var dfs = function (board,i,j,count,word){
       board[i][j]=''
       
       //exploring for next letter
-      var found = dfs(board,i+1,j,count+1, word)
+     if(dfs(board,i+1,j,count+1, word)
       || dfs(board, i-1,j, count+1, word)
       || dfs(board,i,j+1, count+1,word)
-      || dfs(board,i,j-1, count+1, word)
+      || dfs(board,i,j-1, count+1, word) ) {
+         return true
+     }
       
       //toggle back
       board[i][j]=temp
-      return found
+      // return found
   }    
+
+
+
+
 
 var exist = function(board,word){
   //iterate through board, running a dfs on each letter
