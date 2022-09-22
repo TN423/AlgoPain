@@ -10,7 +10,7 @@ var dfs = function (board,i,j,count,word){
           return true
       }
       //out of bounds or failure cases
-      if (i<0 || i>=board.length || j<0 || j>=board[i].length || board[i][j]!== word.charAt(count)){
+      if (i<0 || i>=board.length || j<0 || j>=board[i].length || board[i][j]!== word[count]){
           return false
       }
       //toggling off the current space (to be toggled back later)
@@ -18,16 +18,14 @@ var dfs = function (board,i,j,count,word){
       board[i][j]=''
       
       //exploring for next letter
-     if(dfs(board,i+1,j,count+1, word)
+      var found = dfs(board,i+1,j,count+1, word)
       || dfs(board, i-1,j, count+1, word)
       || dfs(board,i,j+1, count+1,word)
-      || dfs(board,i,j-1, count+1, word) ) {
-         return true
-     }
+      || dfs(board,i,j-1, count+1, word)
       
       //toggle back
       board[i][j]=temp
-      // return found
+      return found
   }    
 
 
