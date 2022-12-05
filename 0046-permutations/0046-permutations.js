@@ -44,9 +44,15 @@ var permute = function(nums) {
             return
         }
         for (var j = i;j <nums.length;j++) {
-            [nums[i],nums[j]]=[nums[j],nums[i]];
+            var temp = nums[i];
+            nums[i]= nums[j];
+            nums[j] = temp;
+            
             dfs(i+1);
-            [nums[i],nums[j]]=[nums[j],nums[i]];
+            
+            var temp = nums[i];
+            nums[i]= nums[j];
+            nums[j] = temp;
         }
     }
     dfs(0)
