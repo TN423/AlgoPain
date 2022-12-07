@@ -13,21 +13,21 @@ const buildAdjList = (n,edges)=>{
 }
 
 
-var hasCycleDFS = (node, adjList, visited, arrive, depart)=>{
-    arrive[node]++
-    visited[node]++
-    console.log(adjList[node])
+var hasCycleDFS = (node, adjList, visited, visiting)=>{
+    visiting[node]=true
+    visited[node]=true
+    // console.log(adjList[node])
     for (var neighbor of adjList[node]){
         if(!visited[neighbor]){
             visited[neighbor]=true
-            if(hasCycleDFS(neighbor, adjList, visited, arrive, depart)) return true
+            if(hasCycleDFS(neighbor, adjList, visited, visiting)) return true
         } else {
-            if(depart[neighbor]===0) return true
+            if(visiting[neighbor]) return true
         }
 
     }
 
-    depart[node]++
+    visiting[node]=false
     return false
 }
 
@@ -36,11 +36,10 @@ var hasCycleDFS = (node, adjList, visited, arrive, depart)=>{
 var canFinish = function (numCourses, prerequisites) {
     var adjList = buildAdjList(numCourses, prerequisites)
     var visited = {}
-    var arrive = Array.from({length:numCourses},()=> 0)
-    var depart = Array.from({length:numCourses},()=> 0)
+    var visiting = {}
     for (var vertex = 0; vertex <adjList.length;vertex++) {
         if(!visited[vertex]) {
-            if(hasCycleDFS(vertex,adjList,visited, arrive, depart)) return false
+            if(hasCycleDFS(vertex,adjList,visited, visiting)) return false
         }
     }
 
