@@ -3,45 +3,46 @@
  * @param {number[][]} prerequisites
  * @return {boolean}
  */
-const buildAdjList = (n,edges)=>{
-    var adjList = Array.from({length:n},()=>[])
+
+
+//an array of length n and we're going to start by setting every one of those edges to an empty array
+//now we're going to iterate over the edges, and we want to pull out our source and destination
+var adjList = function (nums, edges) {
+    var adjList = Array(nums).fill().map(()=>[])
     for (var edge of edges) {
-        var [src,dest]=edge
-        adjList[src].push(dest)
+        let [src, dest]= edge;
+        adjList[src].push(dest);
     }
+    console.log(adjList)
     return adjList
 }
 
-
-var hasCycleDFS = (node, adjList, visited, visiting)=>{
-    visiting[node]=true
-    visited[node]=true
-    // console.log(adjList[node])
-    for (var neighbor of adjList[node]){
-        if(!visited[neighbor]){
+const detectCycle = function (node, adjList, visited, visiting) {
+    visited[node]=true;
+    visiting[node]=true;
+    console.log(node)
+    for (let neighbor of adjList[node]) {
+        if (!visited[neighbor]) {
             visited[neighbor]=true
-            if(hasCycleDFS(neighbor, adjList, visited, visiting)) return true
+            if (detectCycle(neighbor, adjList, visited, visiting)) return true;
         } else {
-            if(visiting[neighbor]) return true
+            if (visiting[neighbor]) return true;
         }
-
     }
-
-    visiting[node]=false
+    
+    visiting[node]=false;
     return false
 }
 
-
-
 var canFinish = function (numCourses, prerequisites) {
-    var adjList = buildAdjList(numCourses, prerequisites)
-    var visited = {}
-    var visiting = {}
-    for (var vertex = 0; vertex <adjList.length;vertex++) {
-        if(!visited[vertex]) {
-            if(hasCycleDFS(vertex,adjList,visited, visiting)) return false
+    let adjacencyList = adjList (numCourses, prerequisites);
+    let visited = {};
+    let visiting = {};
+    for (let node = 0; node<adjacencyList.length;node++) {
+        if (!visited[node]) {
+           if (detectCycle(node, adjacencyList,visited,visiting)) return false 
         }
+        
     }
-
     return true
 }
