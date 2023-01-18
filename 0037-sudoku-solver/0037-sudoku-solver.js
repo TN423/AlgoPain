@@ -3,20 +3,13 @@
  * @return {void} Do not return anything, modify board in-place instead.
  */
 const solveSudoku =(board) => {
-    // if (!board || board.length == 0) {
-    //     return;
-    // }
-    Result(board);
-};
-
-const Result = (board) => {
-    for (let i = 0; i < 9; i++) {
+for (let i = 0; i < 9; i++) {
         for (let j = 0; j < 9; j++) {
             if (board[i][j] === ".") {
                 for (let c = 1; c <= 9; c++) {
                     if (isValid(board, i, j, c.toString())) {
                         board[i][j] = c.toString();
-                        if (Result(board)) {
+                        if (solveSudoku(board)) {
                             return true;
                         }else{
                             board[i][j] = ".";
@@ -29,6 +22,8 @@ const Result = (board) => {
     }
     return true;
 };
+
+    
 
 const isValid = (board, row, col, c) => {
     for (let i = 0; i < 9; i++) {
