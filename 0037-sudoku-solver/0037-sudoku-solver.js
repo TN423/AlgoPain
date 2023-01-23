@@ -28,62 +28,31 @@ const fillSudoku = function (board) {
     return true;    
 }
 
-// const validSudoku = function(row, col,n, board) {
-//     for (let i =0;i<9; i++) {
-//         if (board[row][i]===n) return false;
-//         if (board[i][col]===n) return false;
-//     }
-    
-//     let subgridRowStart = Math.floor(row/3) *3;
-//     let subgridColStart = Math.floor(row/3) *3;
-//     for (let rowIdx = 0; rowIdx <3; rowIdx++) {
-//         for (let colIdx =0; colIdx <3; colIdx++){
-//             var curPlace = board[subgridRowStart+rowIdx][subgridColStart+colIdx];
-//             if (curPlace == n) return false;
-//         }
-//     }
-//     return true;
-// }
-
-
-// const solveSudoku =(board) => {
-//     for (let i = 0; i < 9; i++) {
-//         for (let j = 0; j < 9; j++) {
-//             if (board[i][j] === ".") {
-//                 for (let c = 1; c <= 9; c++) {
-//                     if (isValid(board, i, j, c.toString())) {
-//                         board[i][j] = c.toString();
-//                         if (solveSudoku(board)) {
-//                             return true;
-//                         }else{
-//                             board[i][j] = ".";
-//                         }
-//                     }
-//                 }
-//                 return false;
-//             }
-//         }
-//     }
-//     return true;
-// };
-
-    
-
-const validSudoku = (row, col, c,board) => {
+const validSudoku = function(row, col,n, board) {
     for (let i = 0; i < 9; i++) {
-        if (board[i][col] == c) return false;
-        if (board[row][i] == c) return false;
+        if (board[i][col] === n.toString()) return false;
+        if (board[row][i] === n.toString()) return false;
     }
-
-    const x = ~~(row / 3) * 3;
-    const y = ~~(col / 3) * 3;
+    let rowStart = Math.floor(row / 3) * 3;
+    let colStart = Math.floor(col / 3) * 3;
     for (let i = 0; i < 3; i++) {
         for (let j = 0; j < 3; j++) {
-            if (board[x + i][y + j] == c) {
-                return false;
-            }
+            if (board[rowStart + i][colStart + j] === n.toString()) {
+               return false; 
+            } 
         }
     }
-
     return true;
-};
+}
+
+var test1 = [["5","3",".",".","7",".",".",".","."],
+             ["6",".",".","1","9","5",".",".","."],
+             [".","9","8",".",".",".",".","6","."],
+             ["8",".",".",".","6",".",".",".","3"],
+             ["4",".",".","8",".","3",".",".","1"],
+             ["7",".",".",".","2",".",".",".","6"],
+             [".","6",".",".",".",".","2","8","."],
+             [".",".",".","4","1","9",".",".","5"],
+             [".",".",".",".","8",".",".","7","9"]]
+
+
