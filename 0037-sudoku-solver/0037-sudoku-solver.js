@@ -2,7 +2,7 @@
  * @param {character[][]} board
  * @return {void} Do not return anything, modify board in-place instead.
  */
-var solveSudoku = function(board) {
+let solveSudoku = function(board) {
     fillSudoku(board)
     return board
 };
@@ -45,7 +45,7 @@ const validSudoku = function(row, col,n, board) {
     return true;
 }
 
-var test1 = [["5","3",".",".","7",".",".",".","."],
+let test1 = [["5","3",".",".","7",".",".",".","."],
              ["6",".",".","1","9","5",".",".","."],
              [".","9","8",".",".",".",".","6","."],
              ["8",".",".",".","6",".",".",".","3"],
